@@ -65,11 +65,11 @@ class PlantByID(Resource):
     def delete(self, id):
         plant = Plant.query.get(id)
         if not plant:
-            return make_response(jsonify({"error": "Plant not found"}), 404)
+            return {"error": "Plant not found"}, 404
 
         db.session.delete(plant)
         db.session.commit()
-        return make_response("", 204)
+        return '', 204
 
 
 api.add_resource(PlantByID, '/plants/<int:id>')
